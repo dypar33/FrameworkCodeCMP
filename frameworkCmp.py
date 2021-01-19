@@ -18,7 +18,32 @@ def checkFile(fileName):
         f.close()
         return True
 
+def getFileAddress() :
+    global tmpCode
+    global originCode
+    global cmpCode
+    while True:
+        print("원본 코드 파일의 이름을 입력해주세요.(확장자까지!)")
+        originCodeFile = input("==>")
+        if checkFile(originFileAddress[:-1]+'\\'+originCodeFile) == True:
+            break
+    originCode = tmpCode
+    while True:
+        print("비교할 코드 파일의 이름을 입력해주세요.(확장자까지!)")
+        cmpCodeFile = input("==>")
+        if checkFile(cmpFileAddress+"\\"+cmpCodeFile) == True:
+            break
+    cmpCode = tmpCode
+
 address = """https://wepplication.github.io/tools/compareDoc/""" #code cmp site
+
+
+global tmpCode
+global originCode
+global cmpCode
+tmpCode = ''
+originCode = ''
+cmpCode = ''
 
 f = open('address_option.txt','r',encoding="UTF-8")
 originFileAddress = f.readline()
@@ -33,25 +58,7 @@ print("현재 지정된 원본 파일 경로입니다. "+originFileAddress[:-1])
 print("현재 지정된 비교 대상 파일의 경로입니다. "+cmpFileAddress)
 print()
 
-check = False
-
-global tmpCode
-tmpCode = ''
-originCode = ''
-cmpCode = ''
-
-while True:
-    print("원본 코드 파일의 이름을 입력해주세요.(확장자까지!)")
-    originCodeFile = input("==>")
-    if checkFile(originFileAddress[:-1]+'\\'+originCodeFile) == True:
-        break
-originCode = tmpCode
-while True:
-    print("비교할 코드 파일의 이름을 입력해주세요.(확장자까지!)")
-    cmpCodeFile = input("==>")
-    if checkFile(cmpFileAddress+"\\"+cmpCodeFile) == True:
-        break
-cmpCode = tmpCode
+getFileAddress()
 
 caps = DesiredCapabilities.CHROME
 caps['loggingPrefs'] = {'performance':'OFF'}
@@ -83,22 +90,10 @@ try:
         a = input("==>")
         if a == '2':
             break
-        while True:
-            print("원본 코드 파일의 이름을 입력해주세요.(확장자까지!)")
-            originCodeFile = input("==>")
-            if checkFile(originCodeFile) == True:
-                break
-        originCode = tmpCode
-        while True:
-            print("비교할 코드 파일의 위치를 알려주세요.(같은 디렉토리에 위치할 경우에는 (파일명).(확장자)로만 입력해도 됩니다.)")
-            cmpCodeFile = input("==>")
-            if checkFile(cmpCodeFile) == True:
-                break
-        cmpCode = tmpCode
+        getFileAddress()
 
     
 except Exception as e:
     print(e)
 finally:
     driver.quit()
-
