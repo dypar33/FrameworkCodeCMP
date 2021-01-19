@@ -50,7 +50,7 @@ originFileAddress = f.readline()
 cmpFileAddress = f.readline()
 f.close()
 
-print("###코드 비교 프로그램 MadeBy 박동유###")
+print("###코드 비교 프로그램 MadeBy dypar###")
 print("비교시 두페이지 옵션을 사용하시면 더 보기 편합니다.")
 print("원본, 비교 대상 파일의 디렉토리 경로는 address_option.txt에서 지정해 주세요.")
 
