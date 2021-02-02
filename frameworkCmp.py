@@ -37,10 +37,6 @@ def getFileAddress() :
 
 address = """https://wepplication.github.io/tools/compareDoc/""" #code cmp site
 
-
-global tmpCode
-global originCode
-global cmpCode
 tmpCode = ''
 originCode = ''
 cmpCode = ''
